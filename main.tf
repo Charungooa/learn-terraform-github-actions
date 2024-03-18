@@ -12,10 +12,10 @@ terraform {
   required_version = "~> 1.0"
 
   backend "remote" {
-    organization = "REPLACE_ME"
+    organization = "Ragnya-Amit"
 
     workspaces {
-      name = "REPLACE_ME"
+      name = "Demo-Github_Actions"
     }
   }
 }
@@ -48,8 +48,16 @@ resource "aws_security_group" "web-sg" {
     to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+   }
+  
+   ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
 
 output "web-address" {
   value = "${aws_instance.web.public_dns}:8080"
